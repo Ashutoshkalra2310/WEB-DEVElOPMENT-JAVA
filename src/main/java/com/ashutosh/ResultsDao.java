@@ -4,16 +4,30 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 
 public class ResultsDao{
+	static String url ="jdbc:postgresql://localhost:5432/ashutosh";
+	static String username ="postgres";
+	static String password = "root";
+	public static void changeStatus(String query , int id) throws ClassNotFoundException, SQLException {
+		try {
+		Class.forName("org.postgresql.Driver");
+		Connection con = DriverManager.getConnection(url, username, password);
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setInt(1,id);
+		ps.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	public static List<Data> sendData(String query) {
-		String url ="jdbc:postgresql://localhost:5432/ashutosh";
-		String username ="postgres";
-		String password = "root";
+		
 		List<Data> listOfData = new ArrayList<>();
 		try {
 			Class.forName("org.postgresql.Driver");

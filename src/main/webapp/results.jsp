@@ -9,7 +9,7 @@
 <title>Table Example</title>
 </head>
 <body>
-<h1>Hello ${username}</h1>
+<h1>Hello Admin</h1>
 <br/>
 <br/>
 <h3>Archieved Data</h3>
@@ -17,6 +17,7 @@
     <table border="1">
         <thead>
             <tr>
+            	<th>Status</th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -25,7 +26,13 @@
         </thead>
         <tbody>
             <c:forEach items="${listOfArchivedData}" var="data">
-                <tr>
+            	<tr>
+                	<td>
+	            		<form action="request" method="post">
+	            			<input type="hidden" value="${data.id}" name="archive" > 
+	            			<button type="submit">Active</button>
+	            		</form>
+            		</td>
                     <td>${data.id}</td>
                     <td>${data.name}</td>
                     <td>${data.email}</td>
@@ -41,6 +48,7 @@
     <table border="1">
         <thead>
             <tr>
+            	<th>Status</th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -50,6 +58,12 @@
         <tbody>
             <c:forEach items="${listOfActiveData}" var="data">
                 <tr>
+                	<td>
+	            		<form action="request" method="post">
+	            			<input type="hidden" value="${data.id}" name="active" > 
+	            			<button type="submit">Archive</button>
+	            		</form>
+            		</td>
                     <td>${data.id}</td>
                     <td>${data.name}</td>
                     <td>${data.email}</td>

@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/Contactus")
+@WebServlet("/contact")
 public class Contactus extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
 		String name= String.valueOf(req.getParameter("fname"));

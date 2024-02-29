@@ -75,7 +75,7 @@
 </head>
 <body>
 	<div class="container">
-        <form action="Contactus" method="post">
+        <form action="contact" method="post">
             <h1>Contact Us</h1>
             <h2>Please Fill This Form</h2>
             <label for="fname">Full Name</label>
