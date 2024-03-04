@@ -1,6 +1,7 @@
 package com.ashutosh;
 
 public class Request {
+	int id;
 	String name;
 	String email;
 	String message;
@@ -9,7 +10,15 @@ public class Request {
 		this.email=email;
 		this.message=message;
 	}
-	
+	Request(){
+		
+	}
+	public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -30,8 +39,9 @@ public class Request {
     }
     @Override
     public String toString() {
-        return "name='" + name + '\'' +
-               ", email='" + email + '\'' +
-               ", message='" + message + '\'';
+        return "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", message='" + message + '\'';
     }
 }

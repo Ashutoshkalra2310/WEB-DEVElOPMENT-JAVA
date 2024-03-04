@@ -12,7 +12,7 @@
 <h1>Hello Admin</h1>
 <br/>
 <br/>
-<h3>Archieved Data</h3>
+<h3>Active Data</h3>
 <br>
     <table border="1">
         <thead>
@@ -25,12 +25,12 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${listOfArchivedData}" var="data">
+            <c:forEach items="${ActiveQuerieList}" var="data">
             	<tr>
                 	<td>
-	            		<form action="request" method="post">
+	            		<form action="dashboard" method="post">
 	            			<input type="hidden" value="${data.id}" name="archive" > 
-	            			<button type="submit">Active</button>
+	            			<button type="submit">Archive</button>
 	            		</form>
             		</td>
                     <td>${data.id}</td>
@@ -43,7 +43,7 @@
     </table>
     <br>
     <br>
-    <h3>Active Data</h3>
+    <h3>Archive Data</h3>
 	<br>
     <table border="1">
         <thead>
@@ -56,12 +56,12 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${listOfActiveData}" var="data">
+            <c:forEach items="${ArchiveQuerieList}" var="data">
                 <tr>
                 	<td>
-	            		<form action="request" method="post">
+	            		<form action="dashboard" method="post">
 	            			<input type="hidden" value="${data.id}" name="active" > 
-	            			<button type="submit">Archive</button>
+	            			<button type="submit">Active</button>
 	            		</form>
             		</td>
                     <td>${data.id}</td>

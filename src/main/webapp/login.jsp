@@ -62,7 +62,7 @@ input[type="submit"]:hover {
 <body>
 	<div class="login-container">
         <h2>Admin Login</h2>
-        <form action="adminlogin" method="post">
+        <form action="login" method="post">
             <label for="username">Username</label>
             <input id="username" type="text" name="username">
 
