@@ -9,10 +9,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,8 +22,9 @@ public class LoginServlet extends HttpServlet {
 		User user = new User(inputname, inputpassword);
 		boolean isValid = LoginDao.isValidUser(user);
 		if(isValid) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/dashboard");
-			dispatcher.forward(request,response);
+			HttpSession session = request.getSession();
+			session.setAttribute("username", inputname);
+			response.sendRedirect("dashboard");
 		}
 		else {
 			PrintWriter output = response.getWriter();

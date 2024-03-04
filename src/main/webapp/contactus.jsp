@@ -71,13 +71,13 @@
             <h1>Contact Us</h1>
             <h2>Please Fill This Form</h2>
             <label for="fname">Full Name</label>
-            <input id="fname" type="text" name="fname">
+            <input id="fname" type="text" name="fname" required>
             
             <label for="email">Email</label>
-            <input id="email" type="text" name="email">
+            <input id="email" type="text" name="email"required>
             
             <label for="msg">Message</label>
-            <textarea id="msg" type="text" name="msg" rows="4" cols="50"></textarea>
+            <textarea id="msg" type="text" name="msg" rows="4" cols="50" required></textarea>
             
             <input type="submit" value="Submit">
         </form>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>adminlogin</title>
+<title>login</title>
 <style>
 	body {
     margin: 0;

@@ -24,7 +24,7 @@ public class RequestDao extends HttpServlet {
 		preparestatement.setString(3,request.getMessage());
 		preparestatement.executeUpdate();
 	}
-	public static List<Request> fetchResults(Boolean isActive) {
+	public static List<Request> fetchRequests(Boolean isActive) {
 		if(isActive) {
 			List<Request> activeUser = new ArrayList<>();
 			String activeQuery="SELECT * FROM contact WHERE status='Active' ORDER BY id";
@@ -73,5 +73,25 @@ public class RequestDao extends HttpServlet {
 		}
 		List<Request> request= new ArrayList<>();
 		return request;
+	}
+	public static void changeStatus(int requestId, boolean status) {
+		int id = requestId;
+		String query="";
+		if(status) {
+			query = "UPDATE contact SET status = 'Active' WHERE id = ?";
+		}
+		else {
+			query = "UPDATE contact SET status = 'Archive' WHERE id = ?";
+		}
+		try{
+			Class.forName("org.postgresql.Driver");
+			Connection connection = DriverManager.getConnection(url, username, password);
+			PreparedStatement preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setInt(1,id);
+			preparedstatement.executeUpdate();
+		}
+		catch(Exception exception) {
+			System.out.println(exception.getMessage());
+		}
 	}
 }
