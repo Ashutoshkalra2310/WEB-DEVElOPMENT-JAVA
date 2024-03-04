@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Table Example</title>
+<title>Request</title>
 </head>
 <body>
 <h1>Hello Admin</h1>

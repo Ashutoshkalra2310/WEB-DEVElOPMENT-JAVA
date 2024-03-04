@@ -9,38 +9,37 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/request")
 public class ResultServlet extends HttpServlet {
-	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-		if(req.getParameter("archive")!=null){
-			int id = Integer.parseInt(req.getParameter("archive"));
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("archive")!=null){
+			int id = Integer.parseInt(request.getParameter("archive"));
 			String query = "UPDATE contact SET status = 'Active' WHERE id = ?";
 			try{
 				ResultsDao.changeStatus(query, id);
 			}
-			catch(Exception e) {
-				System.out.println( e.getMessage());
+			catch(Exception exception) {
+				System.out.println(exception.getMessage());
 			}
 		}
-		if(req.getParameter("active")!=null){
-			int id = Integer.parseInt(req.getParameter("active"));
+		if(request.getParameter("active")!=null){
+			int id = Integer.parseInt(request.getParameter("active"));
 			String query = "UPDATE contact SET status = 'Archive' WHERE id = ?";
 			try{
 				ResultsDao.changeStatus(query, id);
 			}
-			catch(Exception e) {
-				System.out.println( e.getMessage());
+			catch(Exception exception) {
+				System.out.println(exception.getMessage());
 			}
 		}
 		
 		String archiveQuery="SELECT * FROM contact WHERE status='Archive' ORDER BY id";
 		List<Data> resultOfArchivedQuery = ResultsDao.sendData(archiveQuery);
-		req.setAttribute("listOfArchivedData", resultOfArchivedQuery);
+		request.setAttribute("listOfArchivedData", resultOfArchivedQuery);
 		
 		String activeQuery = "SELECT * FROM contact WHERE status = 'Active' ORDER BY id";
 		List<Data> resultOfActiveQuery = ResultsDao.sendData(activeQuery);
-		req.setAttribute("listOfActiveData", resultOfActiveQuery);
+		request.setAttribute("listOfActiveData", resultOfActiveQuery);
 		
-		RequestDispatcher rd = req.getRequestDispatcher("results.jsp");
-		rd.forward(req, res);
+		RequestDispatcher rd = request.getRequestDispatcher("results.jsp");
+		rd.forward(request, response);
 	}
 }

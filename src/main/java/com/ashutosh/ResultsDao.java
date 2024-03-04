@@ -17,35 +17,34 @@ public class ResultsDao{
 	public static void changeStatus(String query , int id) throws ClassNotFoundException, SQLException {
 		try {
 		Class.forName("org.postgresql.Driver");
-		Connection con = DriverManager.getConnection(url, username, password);
-		PreparedStatement ps = con.prepareStatement(query);
-		ps.setInt(1,id);
-		ps.executeUpdate();
+		Connection connection = DriverManager.getConnection(url, username, password);
+		PreparedStatement preparedstatement = connection.prepareStatement(query);
+		preparedstatement.setInt(1,id);
+		preparedstatement.executeUpdate();
 		}
-		catch(Exception e) {
-			System.out.println(e.getMessage());
+		catch(Exception exception) {
+			System.out.println(exception.getMessage());
 		}
 	}
 	public static List<Data> sendData(String query) {
-		
 		List<Data> listOfData = new ArrayList<>();
 		try {
 			Class.forName("org.postgresql.Driver");
-			Connection con = DriverManager.getConnection(url, username, password);
-			PreparedStatement ps = con.prepareStatement(query);
-			ResultSet rs=ps.executeQuery();	
-			while(rs.next()) {
+			Connection connection = DriverManager.getConnection(url, username, password);
+			PreparedStatement preparedstatement = connection.prepareStatement(query);
+			ResultSet resultset=preparedstatement.executeQuery();	
+			while(resultset.next()) {
 				Data data = new Data();
-				data.setId(Integer.parseInt(rs.getString(1)));
-				data.setName(rs.getString(2));
-				data.setEmail(rs.getString(3));
-				data.setMessage(rs.getString(4));
+				data.setId(Integer.parseInt(resultset.getString(1)));
+				data.setName(resultset.getString(2));
+				data.setEmail(resultset.getString(3));
+				data.setMessage(resultset.getString(4));
 				listOfData.add(data);
 			}
 			return listOfData;		
 		}
-		catch(Exception e) {
-			e.getMessage();
+		catch(Exception exception) {
+			exception.getMessage();
 		}
 		return listOfData;
 	}
